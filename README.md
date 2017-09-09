@@ -1,24 +1,25 @@
-# CS241 Honors (CS296-41) Project: Steganography Toolset
+# Steganography Toolset : WAV Encoder/Decoder
 
-# Members
-          Students    Anton Bershanskiy <bershan2@illinois.edu>
-                      Dan Johnson       <dsjohns2@illinois.edu>
-                      Rishabh Asthana   <asthana4@illinois.edu>
-          Mentor      Ben Kurtovic      <kurtovc2@illinois.edu>
-# Regular meetings: 		Tuesdays at 6-7pm.
+## To build 
+Use provided Makefile
 
-To compile:
-	g++ yourFile.cpp lodepng.cpp -o OutputFileName
-	
-	g++ encodePNG.cpp -o OutputFileName
-To load images from the internet :
-	wget imageURL
+## Usage
+./wavcodec encode <input.wav> <message> <output.wav>
+OR      ./wavcodec decode <input.wav> <output>
 
-To copy binary info like images..
-	cp Husky.png test.png
+## Demo
+I discuss a simple test of this utility on my portfolio website, here's a link to that page: [Audio Steganography](http://10.0.0.22/Steganography)
+## Description 
+Given a input wave file of sufficient size, a binary file <message> can be encoded into the bits of the input file, producing an output wave file, 
+which has the exact size, properties and playback capabilties as the original file, within which <message> is encoded as noise which is hard to
+detect by a human. 
 
-To two compare PNG's:
-	compare -compose src image1.png image2.png difference.png
-	
-Google Drive folder (with Proposal)
-	https://drive.google.com/drive/u/0/folders/0B1Eyz6Uk-13mRHIxSkdXdVNKV3c
+The codec doesn't require the original file to decode, hence the original can be safely destroyed without compromising the integrity of the payload.
+
+Depending on the size of message and ballast file, the program can determine how many bits to use in order to try and maintain the noise introduced 
+to be minimum.
+
+The provided source code can be altered with relative ease for multithreaded perfomance, as the problem at hand is embarrasingly parrallel.
+
+This module is part of *CS241 Honors (CS296-41) Project: Steganography Toolset* which I helped in creating along with my two team members
+[Dan Johnson](https://github.com/dsjohns2) and [Anton Bershianskiy](https://github.com/bershan2). The orginal project can be found at this [link](https://github.com/dsjohns2/CS-241-Honors-Project).
